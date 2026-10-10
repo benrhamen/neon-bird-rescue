@@ -257,4 +257,21 @@ var a=document.getElementById("pxback");if(a)a.addEventListener("click",function
 function av(){var box=document.querySelector(".avatar-preview");if(!box||!window.PAProfile||!PAProfile.drawPixel)return;var c=box.querySelector("canvas.pxav");if(!c){c=document.createElement("canvas");c.className="pxav";box.insertBefore(c,box.firstChild)}
  if(PAProfile.exists())PAProfile.drawPixel(c,PAProfile.load(),3)}
 new MutationObserver(av).observe(document.documentElement,{childList:true,subtree:true});window.addEventListener("load",av);av()})();
-</script></body></html>
+</script><script>
+(function(){
+var K=["#ff5d5d","#ff9a3c","#ffd23c","#a6e04a","#3cd37a","#61f8ff","#3cb8ff","#5b7bff","#a58bff","#d46bff","#ff72c9","#ff8a8a","#c9a227","#7fd6ff","#b0f0a0"],N=15;
+var css=document.createElement("style");css.textContent=".mtb{max-width:760px;margin:14px auto 40px;padding:0 12px;font-family:ui-monospace,monospace}.mtb details{border:3px solid #2b2160;border-radius:18px;background:#fff;box-shadow:0 5px 0 #2b2160}.mtb summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:16px;color:#2b2160;list-style:none;min-height:44px;font-family:inherit}.mtb summary::-webkit-details-marker{display:none}.mtb summary:after{content:'+';float:right;color:#6b5bd6}.mtb details[open] summary:after{content:'-'}.mtb .in{padding:0 8px 14px}.mtb h4{margin:0 0 6px;text-align:center;font-size:20px;letter-spacing:3px;color:#6b5bd6}.mtb .eq{font-weight:700;font-size:22px;text-align:center;min-height:30px;margin:2px 0 8px;color:#2b2160}.mtb .sc{overflow-x:auto;-webkit-overflow-scrolling:touch}.mtb table{border-collapse:separate;border-spacing:2px;min-width:580px;width:100%;table-layout:fixed;font-weight:700;font-size:12px}.mtb td,.mtb th{text-align:center;padding:7px 0;border-radius:3px;cursor:pointer;color:#2b2160;background:var(--bg,#999);opacity:.55}.mtb th{border-radius:50%;opacity:1;font-size:14px}.mtb td.sq{background:#cfd3e8;opacity:.95}.mtb.on td,.mtb.on th{opacity:.18}.mtb.on .hl{opacity:1}.mtb td.sel{outline:3px solid #2b2160;opacity:1}.mtb p{margin:8px 0 0;font-size:12px;color:#6c6a94;text-align:center}";document.head.appendChild(css);
+var w=document.createElement("div");w.className="mtb";w.style.display="none";
+var h="<tr><th></th>",c,r;for(c=1;c<=N;c++)h+="<th data-c='"+c+"' style='--bg:"+K[c-1]+"'>"+c+"</th>";h+="</tr>";
+for(r=1;r<=N;r++){h+="<tr><th data-r='"+r+"' style='--bg:"+K[r-1]+"'>"+r+"</th>";for(c=1;c<=N;c++)h+="<td data-r='"+r+"' data-c='"+c+"'"+(r===c?" class='sq'":" style='--bg:"+K[Math.min(r,c)-1]+"'")+">"+r*c+"</td>";h+="</tr>"}
+w.innerHTML="<details><summary>Times table cheat sheet (1-15)</summary><div class='in'><h4>MULTIPLICATION</h4><div class='eq'>Tap a number</div><div class='sc'><table>"+h+"</table></div><p>Tap a top or side number to light up its row and column. Tap a square to see the sum. Swipe sideways if needed.</p></div></details>";
+var t=w.querySelector("table"),e=w.querySelector(".eq");
+function clr(){[].forEach.call(t.querySelectorAll(".hl,.sel"),function(x){x.classList.remove("hl","sel")});w.classList.remove("on")}
+function lit(s){[].forEach.call(t.querySelectorAll(s),function(x){x.classList.add("hl")});w.classList.add("on")}
+t.addEventListener("click",function(ev){var x=ev.target.closest("td,th");if(!x)return;clr();var r=x.dataset.r,c=x.dataset.c;if(x.tagName==="TD"){lit("[data-r='"+r+"'],[data-c='"+c+"']");x.classList.add("sel");e.textContent=r+" x "+c+" = "+r*c}else if(!r&&!c){e.textContent="Tap a number"}else{var n=r||c;lit("[data-r='"+n+"'],[data-c='"+n+"']");e.textContent="The "+n+" times table"}});
+document.body.appendChild(w);
+function sync(){var home=/Select difficulty/.test(document.body.innerText||"");w.style.display=home?"block":"none"}
+new MutationObserver(sync).observe(document.getElementById("root"),{childList:true,subtree:true,characterData:true});sync();
+})();
+</script>
+</body></html>
