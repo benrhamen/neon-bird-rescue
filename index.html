@@ -794,6 +794,6 @@ function finish(){var s=st,c=s.c,l=s.l,o=load();o[c]=o[c]||{};var r=o[c][l]||{be
  card.appendChild(el("p","bc-rec",msg));card.appendChild(el("p",null,s.wrong+" wrong. Last record: "+s.score+"."));
  var g=el("button","bc-go","Try again \u2192");g.type="button";g.onclick=function(){run(c,l)};card.appendChild(g);
  var b2=el("button","bc-go alt","\u2190 Back to setup");b2.type="button";b2.onclick=close;card.appendChild(b2);w.appendChild(card)}
-window.__bcChallenge=function(c,l){intro(c,l)};
+window.__bcChallenge=function(c,l){intro(c,l)};refresh();setTimeout(refresh,0);setTimeout(refresh,300);
 })();
 </script><script data-goatcounter="https://pixelarcade.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
